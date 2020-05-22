@@ -13,7 +13,9 @@
   </div>
 </nav>
 <div class="map" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @cocktail.photo.key, crop: :fill %>')"></div>
-<%= link_to 'Add ingredient', new_cocktail_dose_path(@cocktail, @cocktail.doses), class: "d-inline-block text-truncate" %>
+<div style="width: 100%; justify-content: center;" class="d-flex">
+  <%= link_to 'Add ingredient', new_cocktail_dose_path(@cocktail, @cocktail.doses), class: "row btn btn-outline-primary mt-3" %>
+</div>
 <div class="container mt-5">
   <div class="row">
     <div class="d-flex col-12 justify-content-center">
@@ -29,8 +31,8 @@
           <p class="card-text">
             <% @cocktail.doses.each do |dose| %>
               <%= dose.description %>
-              <%= dose.ingredient.name %>
-              <%= link_to 'Remove ingredient', dose_path(dose), method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= dose.ingredient.name %> <%= link_to '<i class="fas fa-trash"></i>'.html_safe, dose_path(dose), method: :delete, data: { confirm: 'Are you sure?' } %>
+              <br>
             <% end %>
           </p>
         </div>
@@ -38,5 +40,6 @@
     </div>
   </div>
 </div>
-
-<%= link_to 'Back', root_path %> |
+<div style="width: 100%; justify-content: center;" class="d-flex mt-4">
+  <%= link_to 'Back', root_path, class: "btn btn-outline-info" %>
+</div>
