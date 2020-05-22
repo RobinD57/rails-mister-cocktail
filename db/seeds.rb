@@ -20,6 +20,7 @@ ingredients.each do |ingredient|
   Ingredient.create(name: ingredient['strIngredient1'])
 end
 
+=begin
 Cocktail.delete_all
 
 url = "https://www.thecocktaildb.com/api/json/v1/1/random.php"
@@ -29,6 +30,7 @@ cocktails = JSON.parse(cocktail_serialized)
 cocktails["drinks"].each do |drink|
   Cocktail.create(
     name: drink["strDrink"],
-    picture: drink["strDrinkThumb"]
+    photo: drink["strDrinkThumb"]
   )
 end
+=end
