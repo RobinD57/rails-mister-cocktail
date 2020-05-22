@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require "json"
 require "rest-client"
+require 'open-uri'
 
 Ingredient.delete_all
 
@@ -17,4 +18,17 @@ ingredients = results['drinks']
 
 ingredients.each do |ingredient|
   Ingredient.create(name: ingredient['strIngredient1'])
+end
+
+Cocktail.delete_all
+
+url = "https://www.thecocktaildb.com/api/json/v1/1/random.php"
+cocktail_serialized = open(url).read
+cocktails = JSON.parse(cocktail_serialized)
+
+cocktails["drinks"].each do |drink|
+  Cocktail.create(
+    name: drink["strDrink"],
+    picture: drink["strDrinkThumb"]
+  )
 end
